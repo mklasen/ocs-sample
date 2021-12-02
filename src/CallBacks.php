@@ -6,10 +6,8 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 class CallBacks {
 
-	private $builder;
-
-	public function __construct() {
-		$this->builder = new ContainerBuilder();
+	public function __construct( ContainerBuilder $builder ) {
+		$this->builder = $builder;
 		$this->builder->register( 'filters', '\OCS\Filters' );
 	}
 

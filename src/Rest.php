@@ -14,7 +14,8 @@ class Rest {
 
 	public function register_endpoints() {
 		$builder = new ContainerBuilder();
-		$builder->register( 'callbacks', '\OCS\CallBacks' );
+		$builder->register( 'callbacks', '\OCS\CallBacks' )
+			->addArgument( $builder );
 		$callbacks = $builder->get( 'callbacks' );
 
 		// /wp-json/sample/v1/route
