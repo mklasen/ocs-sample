@@ -1,0 +1,17 @@
+{
+    "name": "mklasen/optimised-code-structure",
+    "autoload": {
+        "psr-4": {
+             "OCS\\": "src"
+         }
+    },
+    "authors": [
+        {
+            "name": "Marinus Klasen",
+            "email": "marinus@mklasen.nl"
+        }
+    ],
+    "require": {
+        "symfony/dependency-injection": "^6.0"
+    }
+}
