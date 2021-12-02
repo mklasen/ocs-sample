@@ -5,6 +5,10 @@
 
 namespace OCS;
 
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+
 require_once plugin_dir_path( __FILE__ ) . 'vendor/autoload.php';
 
-new Rest();
+$builder = new ContainerBuilder();
+
+new Rest( $builder );

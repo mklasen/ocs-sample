@@ -2,10 +2,12 @@
 
 namespace OCS;
 
-use Symfony\Component\DependencyInjection\ContainerBuilder;
-
 class Rest {
-	public function __construct() {
+
+	private $builder;
+
+	public function __construct( $builder ) {
+		$this->builder = $builder;
 		$this->init();
 	}
 	public function init() {
@@ -13,10 +15,8 @@ class Rest {
 	}
 
 	public function register_endpoints() {
-		$builder = new ContainerBuilder();
-		$builder->register( 'callbacks', '\OCS\CallBacks' )
-			->addArgument( $builder );
-		$callbacks = $builder->get( 'callbacks' );
+		$this->builder->register( 'callbacks', '\OCS\CallBacks' )
+			->addArgument( $this->builder );
 
 		// /wp-json/sample/v1/route
 		register_rest_route(
@@ -24,7 +24,7 @@ class Rest {
 			'route',
 			array(
 				'methods'             => 'GET',
-				'callback'            => array( $callbacks, 'route_callback' ),
+				'callback'            => array( $this->builder->get( 'callbacks' ), 'route_callback' ),
 				'permission_callback' => '__return_true',
 			),
 		);
